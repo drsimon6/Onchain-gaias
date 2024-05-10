@@ -1,0 +1,12 @@
+select 
+DATE_TRUNC('{{Time_frame}}', block_timestamp) AS DATE,
+count(distinct BUYER_ADDRESS) AS BUYERS ,
+count(distinct SELLER_ADDRESS ) * -1  AS SELLERS ,
+count(distinct tx_hash) as nft_sales ,
+count(distinct tokenid) ,
+sum(price) as price_eth,
+sum(price_usd) as price_usd
+from base.nft.ez_nft_sales
+where nft_address = lower('0xA449b4f43D9A33FcdCF397b9cC7Aa909012709fD')
+group by 1
+order by 2 desc
