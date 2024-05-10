@@ -1,0 +1,27 @@
+--https://warpcast.com/~/channel/ogs
+--https://warpcast.com/hony
+--https://warpcast.com/ciniz
+
+select
+PLATFORM_NAME, 
+DATE_TRUNC('{{Time_frame}}', block_timestamp) AS DATE,
+count (DISTINCT tx_hash) as "Total trades",
+
+count(DISTINCT ORIGIN_FROM_ADDRESS) as "Total users",
+
+min(price_usd) as "Min trading volume (USD)",
+avg(price_usd) as "Avg trading volume (USD)",
+max(price_usd) as "Max trading volume (USD)",
+sum(price_usd) as "Total trading volume (USD)",
+
+min(price) as "Min trading volume (ETH)",
+avg(price) as "Avg trading volume (ETH)",
+max(price) as "Max trading volume (ETH)",
+sum(price) as "Total trading volume (ETH)"
+
+from base.nft.ez_nft_sales
+where nft_address = lower('0xA449b4f43D9A33FcdCF397b9cC7Aa909012709fD')
+and  price <= '10' 
+and price <> '0' 
+group by 1,2
+order by 1 desc 
