@@ -1,0 +1,13 @@
+select 
+'https://basescan.org/address/' || SELLER_ADDRESS AS SELLER_ADDRESS,
+count(distinct tx_hash) as nft_sales ,
+count(distinct tokenid) ,
+sum(price) as price_eth,
+sum(price_usd) as price_usd,
+sum(TOTAL_FEES) as "TOTAL FEES (ETH)",
+sum(TOTAL_FEES_USD) as "TOTAL FEES (USD)"
+from base.nft.ez_nft_sales
+where nft_address = lower('0xA449b4f43D9A33FcdCF397b9cC7Aa909012709fD')
+group by 1
+order by 2 desc
+offset 1 rows FETCH first 10 rows only  
