@@ -10,3 +10,4 @@ from base.nft.ez_nft_sales
 where nft_address = lower('0xA449b4f43D9A33FcdCF397b9cC7Aa909012709fD')
 group by 1
 order by 2 desc
+
