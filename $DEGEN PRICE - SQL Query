@@ -1,4 +1,4 @@
-SELECT
+select
   DATE_TRUNC('{{Time_frame}}', HOUR) AS date,
   SYMBOL,
   MIN(PRICE) AS min_price,
